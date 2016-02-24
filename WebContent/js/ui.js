@@ -19,8 +19,8 @@ function FileProgress(file, targetID) {
         Wrappeer.attr('id', this.fileProgressID).addClass('progressContainer');
 
         var progressText = $("<td/>");
-        progressText.addClass('progressName').text(file.name);
-
+        progressText.addClass('progressName').text("");
+//file.name
 
         var fileSize = plupload.formatSize(file.size).toUpperCase();
         var progressSize = $("<td/>");
@@ -192,17 +192,16 @@ FileProgress.prototype.setComplete = function(up, info) {
         tdProgress = td.find('.progress');
 
     var res = $.parseJSON(info);
+    console.log(res);
     var url;
     if (res.url) {
         url = res.url;
-        str = "<div><strong>Link:</strong><a href=" + res.url + " target='_blank' > " + res.url + "</a></div>" +
-            "<div class=hash><strong>Hash:</strong>" + res.hash + "</div>";
+        str = "<div><strong>Link:</strong><a href=" + res.url + " target='_blank' > " + res.url + "</a></div>";
     } else {
         var domain = up.getOption('domain');
         url = domain + encodeURI(res.key);
         var link = domain + res.key;
-        str = "<div><strong>Link:</strong><a href=" + url + " target='_blank' > " + link + "</a></div>" +
-            "<div class=hash><strong>Hash:</strong>" + res.hash + "</div>";
+        str = "<div><strong>Link:</strong><a href=" + url + " target='_blank' > " + link + "</a></div>";
     }
 
     tdProgress.html(str).removeClass().next().next('.status').hide();
@@ -280,7 +279,7 @@ FileProgress.prototype.setComplete = function(up, info) {
 
 
             var fopLink = $('<a class="fopLink"/>');
-            fopLink.attr('data-key', res.key).text('查看处理效果');
+            fopLink.attr('data-key', res.key).text('查看处理效果1');
             infoWrapper.append(fopLink);
             fopLink.on('click', function() {
                 var key = $(this).data('key');
@@ -334,7 +333,8 @@ FileProgress.prototype.setComplete = function(up, info) {
 
                 var imageInfo = Qiniu.imageInfo(res.key);
                 var infoArea = $('<div/>');
-                var infoInner = '<div>格式：<span class="origin-format">' + imageInfo.format + '</span></div>' +
+                var infoInner = '<div>名称：<span class="origin-format">' + res.key + '</span></div>'+
+                	'<div>格式：<span class="origin-format">' + imageInfo.format + '</span></div>' +
                     '<div>宽度：<span class="orgin-width">' + imageInfo.width + 'px</span></div>' +
                     '<div>高度：<span class="origin-height">' + imageInfo.height + 'px</span></div>';
                 infoArea.html(infoInner);
