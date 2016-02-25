@@ -201,7 +201,9 @@ FileProgress.prototype.setComplete = function(up, info) {
         var domain = up.getOption('domain');
         url = domain + encodeURI(res.key);
         var link = domain + res.key;
-        str = "<div><strong>Link:</strong><a href=" + url + " target='_blank' > " + link + "</a></div>";
+        str = "<div><a href=" + url + " target='_blank' >打开原图</a>" +
+        		"<br/><input type='text' value='"+url+"'/>" +
+        		"</div>";
     }
 
     tdProgress.html(str).removeClass().next().next('.status').hide();
@@ -277,7 +279,7 @@ FileProgress.prototype.setComplete = function(up, info) {
 
             var infoWrapper = $('<div class="infoWrapper col-md-6"></div>');
 
-
+            /*
             var fopLink = $('<a class="fopLink"/>');
             fopLink.attr('data-key', res.key).text('查看处理效果1');
             infoWrapper.append(fopLink);
@@ -321,6 +323,7 @@ FileProgress.prototype.setComplete = function(up, info) {
 
                 return false;
             });
+            */
 
             var ie = Qiniu.detectIEVersion();
             if (!(ie && ie <= 9)) {
