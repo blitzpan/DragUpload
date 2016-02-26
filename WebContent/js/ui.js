@@ -202,7 +202,7 @@ FileProgress.prototype.setComplete = function(up, info) {
         url = domain + encodeURI(res.key);
         var link = domain + res.key;
         str = "<div><a href=" + url + " target='_blank' >打开原图</a>" +
-        		"<br/><input type='text' value='"+url+"'/>" +
+        		"<br/><input type='text' value='"+url+"' readonly='readonly'/>" +
         		"</div>";
     }
 
