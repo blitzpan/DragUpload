@@ -63,5 +63,40 @@
 <script type="text/javascript" src="js/qiniu.js"></script>
 <script type="text/javascript" src="js/highlight/highlight.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="zclip/jquery.zclip.min.js"></script>
+
+<!-- 复制开始 -->
+<input type="text" id="mytext" style="display:none" value=""/>
+<button id="copy_input" class="copy">复制</button>
+<span id='msg' style="display:none">复制成功</span>
+<!-- 测试input -->
+<!-- 
+<input type="text" readonly='readonly' value="1" onmouseover ="showCopy(this)"/><br/>
+<input type="text" readonly='readonly' value="2" onmouseover ="showCopy(this)"/><br/>
+ -->
+<script type="text/javascript">
+$(function(){
+    $('#copy_input').zclip({ 
+        path: 'zclip/ZeroClipboard.swf', 
+        copy: function(){//复制内容 
+            return $('#mytext').val(); 
+        }, 
+        afterCopy: function(){//复制成功 
+            $("#msg").insertAfter($('#copy_input'));
+        	$("#msg").show();
+        } 
+    });
+    $("#copy_input").hide();    
+}); 
+function showCopy(obj){
+	$("#mytext").val($(obj).val());
+	$("#msg").hide();
+	$("#copy_input").insertAfter(obj);
+	$("#copy_input").show();
+	$("#zclip-ZeroClipboardMovie_1").css("left",$("#copy_input").offset().left);
+	$("#zclip-ZeroClipboardMovie_1").css("top",$("#copy_input").offset().top);
+}
+</script> 
+<!-- 复制结束 -->
 </body>
 </html>

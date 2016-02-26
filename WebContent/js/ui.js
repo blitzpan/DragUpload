@@ -202,7 +202,7 @@ FileProgress.prototype.setComplete = function(up, info) {
         url = domain + encodeURI(res.key);
         var link = domain + res.key;
         str = "<div><a href=" + url + " target='_blank' >打开原图</a>" +
-        		"<br/><input type='text' value='"+url+"' readonly='readonly'/>" +
+        		"<br/><input type='text' value='"+url+"' readonly='readonly' onmouseover =\"showCopy(this)\"/>" +
         		"</div>";
     }
 
@@ -235,7 +235,7 @@ FileProgress.prototype.setComplete = function(up, info) {
     var Wrapper = $('<div class="Wrapper"/>');
     var imgWrapper = $('<div class="imgWrapper col-md-3"/>');
     var linkWrapper = $('<a class="linkWrapper" target="_blank"/>');
-    var showImg = $('<img src="loading.gif"/>');
+    var showImg = $('<img src="qiniujs/loading.gif"/>');
 
     progressNameTd.append(Wrapper);
 
@@ -269,7 +269,7 @@ FileProgress.prototype.setComplete = function(up, info) {
                     $('#myModal-img').find('.text-warning').show();
                 }
                 var newImg = new Image();
-                modalBody.find('img').attr('src', 'loading.gif');
+                modalBody.find('img').attr('src', 'qiniujs/loading.gif');
                 newImg.onload = function() {
                     modalBody.find('img').attr('src', url).data('key', key).data('h', height);
                     modalBody.find('.modal-body-wrapper').find('a').attr('href', url);
@@ -330,7 +330,7 @@ FileProgress.prototype.setComplete = function(up, info) {
                 var exif = Qiniu.exif(res.key);
                 if (exif) {
                     var exifLink = $('<a href="" target="_blank">查看exif</a>');
-                    exifLink.attr('href', url + '?exif');
+                    exifLink.attr('href', url + '-exif');
                     infoWrapper.append(exifLink);
                 }
 

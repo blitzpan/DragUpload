@@ -86,12 +86,11 @@ $(function() {
                 progress.setError();
                 progress.setStatus(errTip);
             }
-                // ,
-                // 'Key': function(up, file) {
-                //     var key = "";
-                //     // do something with key
-                //     return key
-                // }
+            ,
+            'Key': function(up, file) {
+            	//给上传文件重命名
+            	return new Date().getTime()+"_"+file.name;
+            }
         }
     });
 
@@ -239,7 +238,7 @@ $(function() {
         var newUrl = Qiniu.pipeline(fopArr, key);
 
         var newImg = new Image();
-        img.attr('src', 'loading.gif');
+        img.attr('src', 'qiniujs/loading.gif');
         newImg.onload = function() {
             img.attr('src', newUrl);
             img.parent('a').attr('href', newUrl);
